@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Trulaju",
+    "slug": "trulaju-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "trulaju",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.trulaju.mobile"
+    },
+    "android": {
+      "package": "com.trulaju.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#D4A500"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-status-bar"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiUrl": "https://api.test.trulaju.com",
+      "router": {},
+      "eas": {
+        "projectId": "76eb6475-a163-4aee-b24c-27625bd53686"
+      }
+    }
+  }
+}

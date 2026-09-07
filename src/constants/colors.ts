@@ -1,0 +1,22 @@
+// Matches the web app's brand palette (trulaju-frontend-v1/src/app/global.css)
+export const Colors = {
+  primary: '#D4A500',
+  primaryLight: '#FBF3D9',
+  secondary: '#FFDA1A',
+  charcoal: '#181818',
+  charcoalLight: '#948e93',
+  background: '#ffffff',
+  surface: '#f8f9fa',
+  text: '#181818',
+  textSecondary: '#6c757d',
+  textLight: '#9ca3af',
+  border: '#e5e7eb',
+  error: '#dc2626',
+  success: '#2E9E68',
+  warning: '#f59e0b',
+  white: '#ffffff',
+  black: '#000000',
+  card: '#ffffff',
+  shadow: 'rgba(0, 0, 0, 0.1)',
+  overlay: 'rgba(0, 0, 0, 0.5)',
+};
