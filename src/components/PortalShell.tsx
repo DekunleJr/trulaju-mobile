@@ -5,6 +5,7 @@ import { router, usePathname } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/store/authStore';
+import TrulajuLogo from '../../assets/images/trulaju-logo.svg';
 
 const navigation = [
   { label: 'Dashboard', path: '/' },
@@ -13,7 +14,6 @@ const navigation = [
   { label: 'Trips', path: '/trips' },
   { label: 'Settings', path: '/settings' },
 ] as const;
-const primaryNavigation = navigation.filter((item) => item.path !== '/settings');
 
 export function PortalShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -24,25 +24,17 @@ export function PortalShell({ children }: { children: ReactNode }) {
   return (
     <View style={styles.root}>
       <View style={[styles.header, { paddingTop: insets.top, height: 64 + insets.top }]}>
-        <TouchableOpacity onPress={() => setMenuOpen((open) => !open)} style={styles.iconButton} accessibilityLabel="Open navigation">
-          <Ionicons name={menuOpen ? 'close' : 'menu'} size={24} color={Colors.primary} />
-        </TouchableOpacity>
-        <Text style={styles.logo}>trulaju</Text>
+        <TrulajuLogo width={120} height={30} />
         <TouchableOpacity onPress={() => setMenuOpen((open) => !open)} style={styles.iconButton} accessibilityLabel="Open account menu">
           <Ionicons name="person-circle-outline" size={25} color={Colors.charcoal} />
         </TouchableOpacity>
       </View>
       {menuOpen && (
         <View style={[styles.menu, { top: 64 + insets.top }]}>
-          {primaryNavigation.map((item) => (
-            <TouchableOpacity key={item.path} onPress={() => { setMenuOpen(false); router.replace(item.path as any); }} style={styles.menuItem}>
-              <Text style={[styles.menuLabel, pathname === item.path && styles.activeMenuLabel]}>{item.label}</Text>
-            </TouchableOpacity>
-          ))}
-          <View style={styles.menuDivider} />
           <TouchableOpacity onPress={() => { setMenuOpen(false); router.replace('/settings' as any); }} style={styles.menuItem}>
-            <Text style={styles.menuLabel}>Settings</Text>
+            <Text style={[styles.menuLabel, pathname === '/settings' && styles.activeMenuLabel]}>Settings</Text>
           </TouchableOpacity>
+          <View style={styles.menuDivider} />
           <TouchableOpacity onPress={() => { setMenuOpen(false); void logout(); }} style={styles.menuItem}>
             <Text style={styles.logoutLabel}>Logout</Text>
           </TouchableOpacity>
@@ -69,8 +61,8 @@ const styles = StyleSheet.create({
   header: { height: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: Colors.border, backgroundColor: Colors.card },
   logo: { color: Colors.charcoal, fontSize: 21, fontWeight: '900', letterSpacing: -0.5 },
   iconButton: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
-  menu: { position: 'absolute', top: 64, left: 12, right: 12, zIndex: 10, backgroundColor: Colors.card, borderWidth: 1, borderColor: Colors.border, borderRadius: 8, paddingVertical: 6, shadowColor: Colors.shadow, shadowOpacity: 1, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 5 },
-  menuItem: { paddingHorizontal: 20, paddingVertical: 14 },
+  menu: { position: 'absolute', top: 64, right: 12, width: 170, zIndex: 10, backgroundColor: Colors.card, borderWidth: 1, borderColor: Colors.border, borderRadius: 12, paddingVertical: 6, shadowColor: Colors.shadow, shadowOpacity: 1, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 5 },
+  menuItem: { paddingHorizontal: 18, paddingVertical: 14 },
   menuLabel: { color: Colors.text, fontSize: 14, fontWeight: '600' },
   menuDivider: { height: 1, backgroundColor: Colors.border, marginVertical: 4 },
   logoutLabel: { color: Colors.error, fontSize: 14, fontWeight: '700' },
