@@ -62,7 +62,7 @@ export default function HomeScreen() {
           </View>
         </View>
         <Text style={styles.subtitle}>Good to see you, {user?.firstName || 'there'}.</Text>
-        <View style={styles.warning}><Text style={styles.warningIcon}>!</Text><Text style={styles.warningText}><Text style={styles.warningStrong}>No premium mileage, no cover;</Text> Your mileage balance is negative, and you currently have no insurance cover. Any accident or damage while driving will be at your own risk.</Text></View>
+        <View style={styles.warning}><Text style={styles.warningText}><Text style={styles.warningStrong}>No premium mileage, no cover;</Text> when your available mileage is negative, any accident, incident or damage while driving will not be covered.</Text></View>
         {error && <Text style={styles.error}>{error}</Text>}
         {loading ? <View style={styles.loading}><ActivityIndicator color={Colors.primary} /><Text style={styles.muted}>Loading dashboard...</Text></View> : <>
           <View style={styles.statsGrid}>
