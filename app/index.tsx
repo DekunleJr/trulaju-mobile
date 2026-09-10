@@ -67,7 +67,6 @@ export default function HomeScreen() {
 
   const savingsTotal = savings?.company_total;
   const firstName = user?.firstName || 'there';
-  const initial = (user?.firstName?.charAt(0) || 'T').toUpperCase();
 
   return (
     <PortalShell>
@@ -78,9 +77,6 @@ export default function HomeScreen() {
               <Text style={styles.greeting}>Hi {firstName} 👋</Text>
               <Text style={styles.subtitle}>Here's how your fleet is doing today.</Text>
             </View>
-            <LinearGradient colors={[Colors.secondary, Colors.primary]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.avatar}>
-              <Text style={styles.avatarText}>{initial}</Text>
-            </LinearGradient>
           </View>
 
           {/* Wallet hero card */}
@@ -131,16 +127,16 @@ export default function HomeScreen() {
 
               {/* Fleet savings */}
               <View style={styles.section}>
-                <LinearGradient colors={['#34B075', Colors.success, '#1F7A4D']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.savingsBanner}>
+                <View style={[styles.savingsBanner, { backgroundColor: `${Colors.success}12`, borderColor: `${Colors.success}33` }]}>
                   <View style={styles.sectionTitleRow}>
-                    <View style={styles.savingsIconBadge}>
-                      <Ionicons name="trending-up" size={16} color={Colors.white} />
+                    <View style={[styles.savingsIconBadge, { backgroundColor: `${Colors.success}22` }]}>
+                      <Ionicons name="trending-up" size={16} color={Colors.success} />
                     </View>
-                    <Text style={styles.savingsBannerTitle}>Fleet Savings</Text>
+                    <Text style={[styles.savingsBannerTitle, { color: Colors.success }]}>Fleet Savings</Text>
                   </View>
-                  <Text style={styles.savingsHero}>{money(savingsTotal?.expected_savings_naira_versus_maximum)}</Text>
+                  <Text style={[styles.savingsHero, { color: Colors.success }]}>{money(savingsTotal?.expected_savings_naira_versus_maximum)}</Text>
                   <Text style={styles.savingsHeroLabel}>Total saved vs. regular insurance</Text>
-                </LinearGradient>
+                </View>
                 <View style={styles.savingsGrid}>
                   <Metric label="Regular Insurance" value={money(savingsTotal?.max_annual_premium)} />
                   <Metric label="Purchased Km" value={`${number(savingsTotal?.kilometers_purchased)}km`} />
@@ -230,8 +226,6 @@ const styles = StyleSheet.create({
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   greeting: { color: Colors.charcoal, fontSize: 25, fontWeight: '900', letterSpacing: -0.5 },
   subtitle: { color: Colors.textSecondary, fontSize: 13.5, marginTop: 4 },
-  avatar: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  avatarText: { color: Colors.white, fontSize: 18, fontWeight: '900' },
   title: { color: Colors.charcoal, fontSize: 24, fontWeight: '900' },
   button: { marginTop: 16, minWidth: 200 },
 
@@ -279,11 +273,11 @@ const styles = StyleSheet.create({
   sectionIconBadge: { width: 28, height: 28, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
   sectionTitle: { color: Colors.charcoal, fontSize: 16, fontWeight: '900' },
 
-  savingsBanner: { padding: 18 },
-  savingsIconBadge: { width: 28, height: 28, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.2)' },
-  savingsBannerTitle: { color: Colors.white, fontSize: 16, fontWeight: '900' },
-  savingsHero: { color: Colors.white, fontSize: 30, fontWeight: '900', marginTop: 16, letterSpacing: -0.5 },
-  savingsHeroLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12, fontWeight: '600', marginTop: 2 },
+  savingsBanner: { padding: 18, borderBottomWidth: 1 },
+  savingsIconBadge: { width: 28, height: 28, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
+  savingsBannerTitle: { fontSize: 16, fontWeight: '900' },
+  savingsHero: { fontSize: 30, fontWeight: '900', marginTop: 16, letterSpacing: -0.5 },
+  savingsHeroLabel: { color: Colors.textSecondary, fontSize: 12, fontWeight: '600', marginTop: 2 },
   savingsGrid: { flexDirection: 'row', gap: 14, padding: 18 },
   metric: { flex: 1 },
   metricLabel: { color: Colors.textSecondary, fontSize: 11, fontWeight: '700' },
